@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Spacer = () => {
+const Spacer = ({height=100}) => {
   return (
-    <div>
+    <div style={{height}}>
       
     </div>
   )
