@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { Outlet } from "react-router-dom";
-import Topbar from "../Components/common/topbar";
-import Menubar from "../Components/common/menubar";
+
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../Components/common/footer";
+import Menubar from "../Components/common/menubar";
+import Topbar from "../Components/common/topbar";
 const UserLayout = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.document.documentElement.scrollTo({ top: 0 });
+  }, [pathname]);
   return (
     <>
       <Topbar />
@@ -15,4 +20,3 @@ const UserLayout = () => {
   );
 };
 export default UserLayout;
-

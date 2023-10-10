@@ -3,7 +3,9 @@
 
 @import "bootstrap/scss/bootstrap.scss";
 
-
+html {
+    scroll-behavior: auto !important;
+  }
 
 
 
