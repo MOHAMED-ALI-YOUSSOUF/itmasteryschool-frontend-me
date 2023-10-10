@@ -8,7 +8,7 @@ const Contact = () => {
     <div className='contact'>
         <Container>
             <Card>
-                <Card.body>
+                <Card.Body>
                     <Row>
                         <Col md={8}>
                             <ContactForm/>
@@ -16,7 +16,7 @@ const Contact = () => {
                         <Col md={4}></Col>
 
                     </Row>
-                </Card.body>
+                </Card.Body>
             </Card>
 
         </Container>
