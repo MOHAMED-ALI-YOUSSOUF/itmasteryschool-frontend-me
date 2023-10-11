@@ -5,7 +5,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../Components/common/footer";
 import Menubar from "../Components/common/menubar";
 import Topbar from "../Components/common/topbar";
-import UpTop from "../Components/common/up-top";
+import ScrollToTopButton from "../Components/common/scroll-to-top-button.js";
 const UserLayout = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -16,7 +16,7 @@ const UserLayout = () => {
       <Topbar />
       <Menubar />
       <Outlet />
-      <UpTop/>
+      <ScrollToTopButton/>
       <Footer />
     </>
   );
