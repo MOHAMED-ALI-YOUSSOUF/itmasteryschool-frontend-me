@@ -9,6 +9,7 @@ const LoginPage = () => {
       <PageHeader title="Login" />
       <Spacer />
       <LoginForm />
+      <Spacer />
     </>
   );
 };

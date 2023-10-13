@@ -1,12 +1,14 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import UserLayout from "../layouts/user-layout";
-import HomePage from "../pages/home-page.js";
+import HomePage from "../pages/home-page";
 import CoursesPage from "../pages/courses-page";
-import EventsPage from "../pages/events-pages";
+import EventsPage from "../pages/events-page";
 import AboutPage from "../pages/about-page";
 import ContactPage from "../pages/contact-page";
 import LoginPage from "../pages/login-page";
+import DashboarPage from "../pages/dashboard/dashboard-page";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,29 +19,40 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path:"courses",
-        element: <CoursesPage/>
+        path: "courses",
+        element: <CoursesPage />,
       },
       {
-        path:"events",
-        element: <EventsPage/>
+        path: "events",
+        element: <EventsPage />,
       },
       {
-        path:"about",
-        element: <AboutPage/>
+        path: "about",
+        element: <AboutPage />,
       },
       {
-        path:"contact",
-        element: <ContactPage/>
+        path: "contact",
+        element: <ContactPage />,
       },
       {
-        path:"login",
-        element: <LoginPage/>
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "dashboard",
+        children: [
+          {
+            index: true,
+            element: <DashboarPage />,
+          },
+        ],
       },
     ],
   },
 ]);
+
 const AppRouter = () => {
   return <RouterProvider router={router} />;
 };
+
 export default AppRouter;
