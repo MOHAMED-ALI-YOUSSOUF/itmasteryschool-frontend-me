@@ -12,29 +12,23 @@ import { login as loginSuccess } from "../../store/slices/auth-slice";
 import { AiFillLock } from "react-icons/ai";
 import ButtonLoader from "../common/button-loader";
 import { useNavigate } from "react-router-dom";
-
 const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const initialValues = {
     password: "123456Aa.",
     username: "root",
   };
-
   const validationSchema = Yup.object({
     password: Yup.string().required("Required"),
     username: Yup.string().required("Required"),
   });
-
   const onSubmit = async (values) => {
     setLoading(true);
-
     try {
       const resp = await login(values);
       const { token } = resp;
-
       setToLocalStorage("token", token);
 
       dispatch(loginSuccess(resp));
@@ -48,7 +42,6 @@ const LoginForm = () => {
       setLoading(false);
     }
   };
-
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -64,7 +57,6 @@ const LoginForm = () => {
               <div className="mb-3 mt-3 text-muted">
                 <em>Please enter your username and password</em>
               </div>
-
               <Form noValidate onSubmit={formik.handleSubmit}>
                 <Form.Group className="mb-3" controlId="userName">
                   <Form.Label>Username</Form.Label>
@@ -79,7 +71,6 @@ const LoginForm = () => {
                     {formik.errors.username}
                   </Form.Control.Feedback>
                 </Form.Group>
-
                 <Form.Group className="mb-3" controlId="password">
                   <Form.Label>Password</Form.Label>
                   <PasswordInput
@@ -89,7 +80,6 @@ const LoginForm = () => {
                     error={formik.errors.password}
                   />
                 </Form.Group>
-
                 <Button
                   variant="primary"
                   type="submit"
@@ -106,5 +96,4 @@ const LoginForm = () => {
     </Container>
   );
 };
-
 export default LoginForm;
