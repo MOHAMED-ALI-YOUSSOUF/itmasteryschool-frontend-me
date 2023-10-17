@@ -19,12 +19,8 @@ const PasswordInput = (props) => {
         aria-describedby="basic-addon1"
         {...props}
       />
-      <InputGroup.Text
-        id="basic-addon1"
-        onClick={handleType}
-        style={{ cursor: "pointer" }}
-      >
-        {type === "password" ? <BsEyeFill /> : <BsEyeSlashFill />}
+      <InputGroup.Text id="basic-addon1" onClick={handleType} style={{cursor: "pointer"}}>
+        {type === "password" ? <BsEyeFill /> : <BsEyeSlashFill/>}
       </InputGroup.Text>
 
       <Form.Control.Feedback type="invalid">

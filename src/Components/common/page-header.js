@@ -1,5 +1,6 @@
 import React from 'react'
 import "./page-header.scss";
+
 const PageHeader = ({title}) => {
   return (
     <div className="page-header">
@@ -7,4 +8,5 @@ const PageHeader = ({title}) => {
     </div>
   )
 }
+
 export default PageHeader
