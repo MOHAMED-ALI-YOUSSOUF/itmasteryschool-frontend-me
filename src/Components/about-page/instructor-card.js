@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import "./instructor-card.scss";
+
 const InstructorCard = ({ firstName, lastName, title, image }) => {
   return (
     <Card className="instructor-card">
@@ -21,4 +22,5 @@ const InstructorCard = ({ firstName, lastName, title, image }) => {
     </Card>
   );
 };
+
 export default InstructorCard;

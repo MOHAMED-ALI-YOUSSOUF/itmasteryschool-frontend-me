@@ -193,10 +193,10 @@ const NewAdminForm = () => {
               </Col>
 
               <Col>
-                <FloatingLabel controlId="phone" label="Phone" className="mb-3">
+                <FloatingLabel controlId="phone" label="Phone (XXX-XXX-XXXX)" className="mb-3">
                   <Form.Control
                     type="text"
-                    placeholder="XXX-XXX-XXXX"
+                    placeholder="Phone (XXX-XXX-XXXX)"
                     {...formik.getFieldProps("phoneNumber")}
                     isValid={isValid(formik, "phoneNumber")}
                     isInvalid={isInValid(formik, "phoneNumber")}
@@ -208,10 +208,10 @@ const NewAdminForm = () => {
               </Col>
 
               <Col>
-                <FloatingLabel controlId="ssn" label="SSN" className="mb-3">
+                <FloatingLabel controlId="ssn" label="SSN (XXX-XX-XXXX)" className="mb-3">
                   <Form.Control
                     type="text"
-                    placeholder="XXX-XX-XXXX"
+                    placeholder="SSN (XXX-XX-XXXX)"
                     {...formik.getFieldProps("ssn")}
                     isValid={isValid(formik, "ssn")}
                     isInvalid={isInValid(formik, "ssn")}

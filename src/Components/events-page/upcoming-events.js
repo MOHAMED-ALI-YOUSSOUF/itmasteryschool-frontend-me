@@ -22,14 +22,12 @@ const UpcomingEvents = () => {
                 <div>Upcoming Events</div>
                 <div className="next"><FiChevronRight/></div>
             </h2>
- 
+
 
             <Swiper
                 modules={[Navigation]}
                 spaceBetween={50}
                 slidesPerView={1}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
                 navigation={{
                     prevEl: '.prev',
                     nextEl: '.next'

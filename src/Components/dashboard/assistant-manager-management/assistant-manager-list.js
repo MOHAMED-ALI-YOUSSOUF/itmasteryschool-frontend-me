@@ -4,7 +4,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { FaEdit, FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentRecord, setOperation } from "../../../store/slices/misc-slice";
+import { setCurrentRecord, setListRefreshToken, setOperation } from "../../../store/slices/misc-slice";
 import { swalAlert, swalConfirm } from "../../../helpers/functions/swal";
 import { deleteAssistantManager, getAssistantManagersByPage } from "../../../api/assistant-manager-service";
 
@@ -50,6 +50,7 @@ const AssistantManagerList = () => {
     setLoading(true);
     try {
       await deleteAssistantManager(id);
+      dispatch(setListRefreshToken(Math.random()));
       swalAlert("Assistant Manager was deleted", "success");
     } catch (err) {
       console.log(err)
@@ -72,7 +73,7 @@ const AssistantManagerList = () => {
         <Button className="btn-link" onClick={()=> handleEdit(row)}>
           <FaEdit />
         </Button>
-        <Button className="btn-link" onClick={()=> handleDelete(row.id)}>
+        <Button className="btn-link" onClick={()=> handleDelete(row.userId)}>
           <FaTimes />
         </Button>
       </div>

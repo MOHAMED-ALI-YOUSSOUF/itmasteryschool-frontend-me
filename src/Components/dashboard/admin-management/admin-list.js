@@ -31,7 +31,6 @@ const AdminList = () => {
   const loadData = async (page) => {
     try {
       const resp = await getAdminsByPage(page, lazyState.rows);
-      console.log(resp);
       setUsers(resp.content);
       setTotalRows(resp.totalElements);
     } catch (err) {

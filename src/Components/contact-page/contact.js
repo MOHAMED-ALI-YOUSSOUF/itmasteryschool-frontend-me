@@ -2,21 +2,22 @@ import React from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import Map from './map'
 import ContactForm from './contact-form'
-import GetInTouch from './get-in-touch';
+import GetInTouch from './get-in-touch'
 import "./contact.scss";
 
 const Contact = () => {
   return (
-    <div className='contact'>
+    <div className="contact">
         <Container>
             <Card>
                 <Card.Body>
-                    <Row>
-                        <Col md={8}>
+                    <Row className="g-5">
+                        <Col lg={7}>
                             <ContactForm/>
                         </Col>
-                        <Col md={4}><GetInTouch/></Col>
-
+                        <Col lg={5}>
+                            <GetInTouch/>
+                        </Col> 
                     </Row>
                 </Card.Body>
             </Card>
@@ -24,9 +25,9 @@ const Contact = () => {
         </Container>
 
         <Map/>
-      
+
     </div>
   )
 }
 
-export default Contact;
+export default Contact

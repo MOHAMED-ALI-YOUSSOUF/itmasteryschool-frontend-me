@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import courses from "../../helpers/data/courses.json";
 import CourseCard from "./course-card";
+
 const Courses = () => {
   return (
     <Container>
@@ -15,4 +16,5 @@ const Courses = () => {
     </Container>
   );
 };
+
 export default Courses;

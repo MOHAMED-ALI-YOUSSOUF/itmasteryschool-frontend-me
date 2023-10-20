@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -15,18 +15,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { setListRefreshToken, setOperation } from "../../../store/slices/misc-slice";
 import { swalAlert } from "../../../helpers/functions/swal";
 import ButtonLoader from "../../common/button-loader";
-import { updateTeacher } from "../../../api/teacher-service";
+import { getTeacherById, updateTeacher } from "../../../api/teacher-service";
+import { MultiSelect } from "primereact/multiselect";
+import { getAllLessonPrograms } from "../../../api/lesson-program-service";
 
 const EditTeacherForm = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [lessonPrograms, setLessonPrograms] = useState([])
+
   const { currentRecord } = useSelector((state) => state.misc);
 
   const initialValues = { 
     ...currentRecord, 
     password:"", 
-    confirmPassword:"" 
+    confirmPassword:"",
+    isAdvisorTeacher: currentRecord.advisorTeacher,
+    lessonsIdList:[]
   };
+
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Required"),
@@ -84,6 +91,45 @@ const EditTeacherForm = () => {
     onSubmit,
     enableReinitialize: true
   });
+
+  const loadLessonPrograms = async () => { 
+    try {
+        const data = await getAllLessonPrograms();
+
+        const arr = data.map( (program)=> ({
+          lessonProgramId: program.lessonProgramId,
+          lessonName: program.lessonName.map( (item)=> item.lessonName).join("-")
+        }))
+
+        setLessonPrograms(arr);
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const getTeacher = async () => { 
+    try {
+      
+      const data = await getTeacherById(currentRecord.userId);
+      const arr = data.object.lessonsProgramList.map(item=> item.id);
+      formik.setFieldValue("lessonsIdList", arr);
+
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
+  useEffect(() => {
+    loadLessonPrograms()
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    getTeacher()
+    // eslint-disable-next-line
+  }, [currentRecord])
 
   return (
     <Container>
@@ -186,10 +232,10 @@ const EditTeacherForm = () => {
               </Col>
 
               <Col>
-                <FloatingLabel controlId="phone" label="Phone" className="mb-3">
+                <FloatingLabel controlId="phone" label="Phone (XXX-XXX-XXXX)" className="mb-3">
                   <Form.Control
                     type="text"
-                    placeholder="XXX-XXX-XXXX"
+                    placeholder="Phone (XXX-XXX-XXXX)"
                     {...formik.getFieldProps("phoneNumber")}
                     isValid={isValid(formik, "phoneNumber")}
                     isInvalid={isInValid(formik, "phoneNumber")}
@@ -201,10 +247,25 @@ const EditTeacherForm = () => {
               </Col>
 
               <Col>
-                <FloatingLabel controlId="ssn" label="SSN" className="mb-3">
+                <FloatingLabel controlId="email" label="Email" className="mb-3">
+                  <Form.Control
+                    type="email"
+                    placeholder=""
+                    {...formik.getFieldProps("email")}
+                    isValid={isValid(formik, "email")}
+                    isInvalid={isInValid(formik, "email")}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.email}
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+              </Col>
+
+              <Col>
+                <FloatingLabel controlId="ssn" label="SSN (XXX-XX-XXXX)" className="mb-3">
                   <Form.Control
                     type="text"
-                    placeholder="XXX-XX-XXXX"
+                    placeholder="SSN (XXX-XX-XXXX)"
                     {...formik.getFieldProps("ssn")}
                     isValid={isValid(formik, "ssn")}
                     isInvalid={isInValid(formik, "ssn")}
@@ -213,6 +274,29 @@ const EditTeacherForm = () => {
                     {formik.errors.ssn}
                   </Form.Control.Feedback>
                 </FloatingLabel>
+              </Col>
+
+              <Col>
+                  <Form.Check
+                    id="isAdvisor"
+                    type="checkbox"
+                    label="Is Advisor Teacher"
+                    checked={formik.values.isAdvisorTeacher}
+                    {...formik.getFieldProps("isAdvisorTeacher")}
+                  />
+              </Col> 
+
+              <Col>
+                <MultiSelect
+                    value={formik.values.lessonsIdList}
+                    onChange={(e) => formik.setFieldValue("lessonsIdList", e.value)}
+                    options={lessonPrograms}
+                    display="chip"
+                    placeholder="Select Lessons"
+                    optionValue="lessonProgramId"
+                    optionLabel="lessonName"
+                  
+                  />
               </Col>
 
               <Col>

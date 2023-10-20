@@ -1,14 +1,14 @@
 import React from 'react'
-import PageHeader from '../Components/common/page-header'
-import Spacer from '../Components/common/spacer'
-import Contact from '../Components/contact-page/contact'
+import PageHeader from '../components/common/page-header'
+import Spacer from "../components/common/spacer";
+import Contact from '../components/contact-page/contact';
 
 const ContactPage = () => {
   return (
     <>
-      <PageHeader title= "Contact"/>
-      <Spacer/>
-      <Contact/>
+        <PageHeader title="Contact"/>
+        <Spacer height={50}/>
+        <Contact/>
     </>
   )
 }

@@ -12,6 +12,22 @@ export const getTeachersByPage = async (page=0, size=20, sort="name", type="ASC"
   return data;
 };
 
+export const getAllTeachers = async () => { 
+  const resp = await axios.get(`${baseURL}/teachers/getAll`, {
+    headers: getAuthHeader(),
+  });
+  const data = await resp.data;
+  return data;
+ }
+
+ export const getTeacherById = async (id) => { 
+  const resp = await axios.get(`${baseURL}/teachers/getSavedTeacherById/${id}`, {
+    headers: getAuthHeader(),
+  });
+  const data = await resp.data;
+  return data;
+ }
+
 
 export const createTeacher = async (payload) => { 
   const resp = await axios.post(`${baseURL}/teachers/save`, payload, {
@@ -38,3 +54,13 @@ export const createTeacher = async (payload) => {
   const data = await resp.data;
   return data;
  }
+
+ export const chooseLesson = async (payload) => { 
+  const resp = await axios.post(`${baseURL}/teachers/chooseLesson`, payload, {
+    headers: getAuthHeader(),
+  });
+  const data = await resp.data;
+  return data;
+ }
+
+

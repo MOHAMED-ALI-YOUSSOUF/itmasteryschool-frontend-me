@@ -17,27 +17,31 @@ const UserMenu = () => {
   const handleClose = () => setShowMenu(false);
   const handleOpen = () => setShowMenu(true);
 
+
   const handleMenuClick = (link) => {
     navigate(link);
     handleClose();
   };
 
-  const handleLogout = async () => {
+  const handleLogout = async () => { 
+
     const resp = await swalConfirm("Are you sure to logout?", "");
-    if (!resp.isConfirmed) return;
+    if(!resp.isConfirmed) return;
 
     dispatch(logout());
     removeFromLocalStorage("token");
     navigate("/");
-  };
 
+  }
+
+  
   return (
     <>
       <div className="user-menu">
         {isUserLogin ? (
           <>
             <Button variant="primary" size="sm" onClick={handleOpen}>
-              {user.name} <AiOutlineMenu />
+              {user.name} {user?.surname}<AiOutlineMenu />
             </Button>
 
             <Offcanvas show={showMenu} onHide={handleClose}>
@@ -59,7 +63,9 @@ const UserMenu = () => {
                     </Nav.Link>
                   ))}
 
-                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                  <Nav.Link onClick={handleLogout}>
+                    Logout
+                  </Nav.Link>
                 </Nav>
               </Offcanvas.Body>
             </Offcanvas>

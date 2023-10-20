@@ -1,4 +1,5 @@
 @use "../../styles/variables" as v;
+
 .welcome{
     color: v.$color3;
     h2{
@@ -6,16 +7,16 @@
         font-weight: 600;
         font-size: 2.3rem;
     }
+
     ul{
         line-height: 30px;
     }
+
     div[class^="col"]{
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
+
     
 }
-
-
-

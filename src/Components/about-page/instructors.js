@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import instructors from "../../helpers/data/instructors.json";
 import InstructorCard from "./instructor-card";
 import "./instructors.scss";
+
 const Instructors = () => {
   return (
     <Container className="instructors">
@@ -19,4 +20,5 @@ const Instructors = () => {
     </Container>
   );
 };
+
 export default Instructors;
