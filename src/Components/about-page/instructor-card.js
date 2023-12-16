@@ -11,6 +11,7 @@ const InstructorCard = ({ firstName, lastName, title, image }) => {
           src={`/images/instructors/${image}`}
           alt={title}
           className="img-fluid"
+          
         />
       </div>
       <Card.Title>

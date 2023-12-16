@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { deleteAdmin, getAdminsByPage } from "../../../api/admin-service";
-import { DataTable } from "primereact/datatable";
+import {DataTable} from "primereact/datatable"
 import { Column } from "primereact/column";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
